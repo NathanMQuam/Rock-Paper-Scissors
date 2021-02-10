@@ -2,7 +2,11 @@ const resultsElement = document.getElementById("results")
 const playerWeaponElement = document.getElementById("playerWeapon")
 const cpuWeapon = document.getElementById("cpuWeapon")
 
-function play (playerChoice = "") {
+
+/**
+ * @param {String} playerChoice
+ */
+function play (playerChoice) {
    let result = ""
    let cpuChoice = randomChoice()
 
@@ -18,8 +22,6 @@ function play (playerChoice = "") {
             case "scissors":
                result = "Win!"
                break;
-            default:
-               unknown();
          }
          break;
       case "paper":
@@ -33,8 +35,6 @@ function play (playerChoice = "") {
             case "scissors":
                result = "Lose"
                break;
-            default:
-               unknown();
          }
          break;
       case "scissors":
@@ -48,12 +48,7 @@ function play (playerChoice = "") {
             case "scissors":
                result = "Tie"
                break;
-            default:
-               unknown();
          }
-         break;
-         default:
-            unknown();
    }
    console.log(playerChoice, cpuChoice, result);
 
@@ -66,10 +61,6 @@ function randomChoice() {
    return choices[Math.floor(Math.random() * 3)]
 }
 
-function unknown() {
-   console.log("Sorry, there isn't an input for that");
-}
-
 /*
    Possible cases:
                0         1        2
@@ -77,6 +68,4 @@ function unknown() {
 0  Rock        Tie      Lose     Win
 1  Paper       Win      Tie      Lose
 2  Scissors    Lose     Win      Tie
-
-
 */
