@@ -1,15 +1,31 @@
 const resultsElement = document.getElementById("results")
 const playerWeaponElement = document.getElementById("playerWeapon")
-const cpuWeapon = document.getElementById("cpuWeapon")
+const cpuWeaponElement = document.getElementById("cpuWeapon")
+const choicesElement = document.getElementById("choicesView")
+
+let playerChoice = ""
+let result = ""
+let cpuChoice = "gun"
+
 
 
 /**
- * @param {String} playerChoice
+ * @param {String} choice
  */
-function play (playerChoice) {
-   let result = ""
-   let cpuChoice = randomChoice()
+function play (choice) {
+   playerChoice = choice
+   cpuChoice = randomChoice()
 
+   determineWinner()
+}
+
+function randomChoice() {
+   let choices = ["rock", "paper", "scissors"]
+
+   return choices[Math.floor(Math.random() * 3)]
+}
+
+function determineWinner() {
    switch (playerChoice) {
       case "rock":
          switch (cpuChoice) {
@@ -50,15 +66,29 @@ function play (playerChoice) {
                break;
          }
    }
-   console.log(playerChoice, cpuChoice, result);
 
-   resultsElement.innerText = result
+   draw()
 }
 
-function randomChoice() {
-   let choices = ["rock", "paper", "scissors"]
 
-   return choices[Math.floor(Math.random() * 3)]
+
+
+
+function showWeapons() {
+   playerWeaponElement.innerText = playerChoice
+   cpuWeaponElement.innerText = cpuChoice
+
+   choicesElement.hidden = false
+}
+
+function hideWeapons() {
+   choicesElement.hidden = true
+}
+
+function draw() {
+   resultsElement.innerText = result
+
+   showWeapons()
 }
 
 /*
